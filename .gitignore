@@ -1,0 +1,28 @@
+# Data files
+data/raw/*.csv
+data/raw/*.json
+data/raw/*.xlsx
+data/processed/*
+
+# Talend
+.metadata/
+*.log
+*.java
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Docker
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
