@@ -1,0 +1,94 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Data Warehouse
+  postgres:
+    image: postgres:15-alpine
+    container_name: dw_postgres
+    environment:
+      POSTGRES_DB: agriculture_dw
+      POSTGRES_USER: bi_user
+      POSTGRES_PASSWORD: bi_password_2030
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql/init:/docker-entrypoint-initdb.d
+    networks:
+      - bi_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bi_user -d agriculture_dw"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # PgAdmin pour administration
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@agriculture.ma
+      PGADMIN_DEFAULT_PASSWORD: admin2030
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - bi_network
+    depends_on:
+      - postgres
+
+  # Cube.js OLAP Server
+  cube:
+    image: cubejs/cube:latest
+    container_name: cube_olap
+    environment:
+      CUBEJS_DB_TYPE: postgres
+      CUBEJS_DB_HOST: postgres
+      CUBEJS_DB_NAME: agriculture_dw
+      CUBEJS_DB_USER: bi_user
+      CUBEJS_DB_PASS: bi_password_2030
+      CUBEJS_DB_PORT: 5432
+      CUBEJS_API_SECRET: SECRET_KEY_CHANGE_ME_IN_PRODUCTION
+      CUBEJS_DEV_MODE: 'true'
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./cube:/cube/conf
+    networks:
+      - bi_network
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # Metabase pour visualisation
+  metabase:
+    image: metabase/metabase:latest
+    container_name: metabase_viz
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: metabase
+      MB_DB_PORT: 5432
+      MB_DB_USER: bi_user
+      MB_DB_PASS: bi_password_2030
+      MB_DB_HOST: postgres
+    ports:
+      - "3000:3000"
+    volumes:
+      - metabase_data:/metabase-data
+    networks:
+      - bi_network
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+  metabase_data:
+
+networks:
+  bi_network:
+    driver: bridge
