@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010" xmlns:orgomg.cwm.resource.relational="http:///orgomg/cwm/resource/relational.ecore">
+  <TalendMetadata:DatabaseConnection xmi:id="_qQFxIAqtEfG4jKPj8wed3w" name="DW_PostgreSQL" id="_-UBO8AqsEfG4jKPj8wed3w" label="DW_PostgreSQL" dataPackage="_qSkdYAqtEfG4jKPj8wed3w" DatabaseType="PostgreSQL" DriverClass="org.postgresql.Driver" URL="jdbc:postgresql://localhost:5433/agriculture_dw?" dbVersionString="V9_X" Port="5433" Username="bi_user" Password="enc:system.encryption.key.v1:fda7+KW9VjsGoTQQXvEqfuwVrZpGWkQvctyNV+bG/0sdbQ3QX4MF+CUaRfI=" ServerName="localhost" DatasourceName="" FileFieldName="" SID="agriculture_dw" SqlSynthax="" StringQuote="" NullChar="" DbmsId="postgres_id" ProductId="POSTGRESQL" AdditionalParams="" StandardSQL="true" SQLMode="false" UiSchema="dw">
+    <taggedValue xmi:id="_qQL3wAqtEfG4jKPj8wed3w" tag="Is Conn Need Reload" value="false"/>
+    <taggedValue xmi:id="_qRJhEAqtEfG4jKPj8wed3w" tag="package filter" value=""/>
+    <taggedValue xmi:id="_qRW8cAqtEfG4jKPj8wed3w" tag="Status" value=""/>
+    <taggedValue xmi:id="_qRW8cQqtEfG4jKPj8wed3w" tag="Version" value="0.1"/>
+    <taggedValue xmi:id="_qRW8cgqtEfG4jKPj8wed3w" tag="Purpose" value=""/>
+    <taggedValue xmi:id="_qRW8cwqtEfG4jKPj8wed3w" tag="Description" value=""/>
+    <taggedValue xmi:id="_qRW8dAqtEfG4jKPj8wed3w" tag="Author" value=""/>
+    <taggedValue xmi:id="_qRW8dQqtEfG4jKPj8wed3w" tag="otherParameter"/>
+    <taggedValue xmi:id="_qR1dkAqtEfG4jKPj8wed3w" tag="DB ProductName" value="PostgreSQL"/>
+    <taggedValue xmi:id="_qR1dkQqtEfG4jKPj8wed3w" tag="DB ProductVersion" value="15.16"/>
+    <taggedValue xmi:id="_qR1dkgqtEfG4jKPj8wed3w" tag="DB IdentifierQuoteString" value="&quot;"/>
+    <parameters xmi:id="_qQL3wQqtEfG4jKPj8wed3w" key="CONN_PARA_KEY_USERNAME" value="bi_user"/>
+  </TalendMetadata:DatabaseConnection>
+  <orgomg.cwm.resource.relational:Catalog xmi:id="_qSkdYAqtEfG4jKPj8wed3w" name="agriculture_dw" dataManager="_qQFxIAqtEfG4jKPj8wed3w">
+    <ownedElement xsi:type="orgomg.cwm.resource.relational:Schema" xmi:id="_qSoHwAqtEfG4jKPj8wed3w" name="dw"/>
+  </orgomg.cwm.resource.relational:Catalog>
+</xmi:XMI>

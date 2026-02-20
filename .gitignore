@@ -7,7 +7,7 @@ data/processed/*
 # Talend
 .metadata/
 *.log
-*.java
+**/src/main/java/**/*.java
 
 # Python
 __pycache__/
